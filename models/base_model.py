@@ -6,12 +6,13 @@ import datetime
 
 import models
 
+
 class BaseModel():
     """New class Basemodel"""
 
     def __init__(self, *args, **kwargs):
         """constructor class Basemodel"""
-        if len(kwargs)>0:
+        if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
@@ -24,7 +25,7 @@ class BaseModel():
             self.updated_at = datetime.datetime.now()
             models.storage.new(self)
 
-    def __str__ (self):
+    def __str__(self):
         """ str representationf Basemodel"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                         self.id,
