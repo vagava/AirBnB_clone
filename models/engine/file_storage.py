@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """New class file_storage"""
 
-from models.base_model import BaseModel
+"""from models.base_model import BaseModel"""
 import os
 import json
+from models.base_model import BaseModel
 
 
 
@@ -20,26 +21,29 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        key=str(obj.__class__.__name__)+"."+str(obj.id)
+        key=obj.__class__.__name__+'.'+obj.id
         self.__objects[key]= obj
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         new_dict = {}
-        new_dict = self.__objects.copy()
-        for key, value in new_dict.items():
+        """new_dict = self.__objects.copy()"""
+        for key, value in self.__objects.items():
             new_dict[key] = value.to_dict()
-        with open("file.json", "a") as file:
+        with open("file.json", "w") as file:
             json.dump(new_dict, file, indent=4)
 
 
     def reload(self):
         """deserializes the JSON file to __objects (only if the JSON file (__file_path) exists"""
         dict_reload={}
-        reload_obj = BaseModel()
-        try:
-            with open(FileStorage.__file_path) as file:
-                dict_reload = json.load(file)
-                self.__objects = reload_obj(dict_reload)
-            return self.__objects
-        except: pass
+        with open(FileStorage.__file_path) as file:
+            dict_reload = json.load(file)
+            for key, value in dict_reload.items():
+                self.__objects[key] = BaseModel(**value)
+
+
+
+
+
+
