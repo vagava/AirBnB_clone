@@ -3,7 +3,9 @@
 
 
 import cmd
+import shlex
 from models.base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,12 +16,33 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of the clase name given
         as an argument"""
         if args:
+            args = shlex.split(args)
             try:
-                new_instance = globals()[args]()
+                new_instance = globals()[args[0]]()
                 new_instance.save()
                 print(new_instance.id)
             except:
                 print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+
+    def do_show(self, args):
+        """  Prints the string representation of an instance
+        based on the class name and id
+        """
+        if args:
+            args = shlex.split(args)
+            if args[0] not in globals():
+                print("** class doesn't exist **")
+            elif len(args)<2:
+                print("** instance id missing **")
+            else:
+                dict_show = storage.all()
+                key = args[0]+"."+args[1]
+                if key in dict_show:
+                    print(dict_show[key])
+                else:
+                    print("** no instance found **")
         else:
             print("** class name missing **")
 
