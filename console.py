@@ -64,6 +64,30 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_all(self, args):
+        """Prints all string representation of all instances
+        based or not on the class name."""
+        list_all=[]
+        if args:
+            args = shlex.split(args)
+            if args[0] in globals():
+                for key, value in storage.all().items():
+                    if value["__class__"] == args[0]:
+                        list_all.append(str(value))
+                print(list_all)
+            else:
+                print("** class doesn't exist **")
+        else:
+            for element in storage.all().values():
+                list_all.append(str(element))
+                print(list_all)
+
+    def do_otra(self, args):
+        if args:
+            args = shlex.split(args)
+        dic = globals()
+        print(dic)
+
     def emptyline(self):
         """No realiza ninguna accion
         """
