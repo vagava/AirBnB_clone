@@ -46,6 +46,24 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_destroy(self, args):
+        """Deletes an instance based on the class name and id"""
+        if args:
+            args = shlex.split(args)
+            if args[0] not in globals():
+                print("** class doesn't exist **")
+            elif len(args)<2:
+                print("** instance id missing **")
+            else:
+                key = args[0]+"."+args[1]
+                if key in storage.all():
+                    storage.all().pop(key)
+                    storage.save()
+                else:
+                    print("** no instance found **")
+        else:
+            print("** class name missing **")
+
     def emptyline(self):
         """No realiza ninguna accion
         """
