@@ -122,9 +122,5 @@ class HBNBCommand(cmd.Cmd):
 
 """inicio del programa"""
 if __name__ == '__main__':
-    import sys
     interprete = HBNBCommand()
-    if len(sys.argv) > 1: # activa el modo no interactivo
-        interprete.onecmd(' '.join(sys.argv[1:]))
-    else:
-        interprete.cmdloop() # modo interactivo
+    interprete.cmdloop() # modo interactivo
