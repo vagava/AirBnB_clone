@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """New class file_storage"""
 
-import os
 import json
-from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -32,6 +30,7 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects
         (only if the JSON file (__file_path) exists"""
+        from models.base_model import BaseModel
         dict_reload = {}
         try:
             with open(FileStorage.__file_path) as file:
