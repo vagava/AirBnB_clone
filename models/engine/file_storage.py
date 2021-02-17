@@ -31,11 +31,13 @@ class FileStorage:
         """deserializes the JSON file to __objects
         (only if the JSON file (__file_path) exists"""
         from models.base_model import BaseModel
+        from models.user import User
         dict_reload = {}
         try:
             with open(FileStorage.__file_path) as file:
                 dict_reload = json.load(file)
                 for key, value in dict_reload.items():
-                    self.__objects[key] = BaseModel(**value)
+                    obj = value["__class__"]
+                    self.__objects[key] = locals()[obj](**value)
         except:
             pass
