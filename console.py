@@ -10,7 +10,7 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """  command interpreter """
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     def do_create(self, args):
         """Creates a new instance of the clase name given
@@ -101,6 +101,7 @@ class HBNBCommand(cmd.Cmd):
                 key=args[0]+'.'+args[1]
                 obj = storage.all()[key]
                 obj.__dict__[args[2]] = args[3]
+                obj.save()
         else:
             print("** class name missing **")
 
