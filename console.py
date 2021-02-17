@@ -72,21 +72,16 @@ class HBNBCommand(cmd.Cmd):
             args = shlex.split(args)
             if args[0] in globals():
                 for key, value in storage.all().items():
-                    if value["__class__"] == args[0]:
-                        list_all.append(str(value))
+                    if value.__class__.__name__== args[0]:
+                        list_all.append(value.__str__())
                 print(list_all)
             else:
                 print("** class doesn't exist **")
         else:
             for element in storage.all().values():
-                list_all.append(str(element))
-                print(list_all)
+                list_all.append(element.__str__())
+            print(list_all)
 
-    def do_otra(self, args):
-        if args:
-            args = shlex.split(args)
-        dic = globals()
-        print(dic)
 
     def emptyline(self):
         """No realiza ninguna accion
