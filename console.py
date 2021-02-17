@@ -82,6 +82,27 @@ class HBNBCommand(cmd.Cmd):
                 list_all.append(element.__str__())
             print(list_all)
 
+    def do_update(self, args):
+        """Updates an instance based on the class name
+        and id by adding or updating attribute """
+        if args:
+            args = shlex.split(args)
+            if args[0] not in globals():
+                print("** class doesn't exist **")
+            elif len(args)<2:
+                print("** instance id missing **")
+            elif args[0]+'.'+args[1] not in storage.all():
+                print("** no instance found **")
+            elif len(args)<3:
+                print("** attribute name missing **")
+            elif len(args)<4:
+                print("** value missing **")
+            else:
+                key=args[0]+'.'+args[1]
+                obj = storage.all()[key]
+                obj.__dict__[args[2]] = args[3]
+        else:
+            print("** class name missing **")
 
     def emptyline(self):
         """No realiza ninguna accion
