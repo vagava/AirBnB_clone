@@ -32,6 +32,11 @@ class FileStorage:
         (only if the JSON file (__file_path) exists"""
         from models.base_model import BaseModel
         from models.user import User
+        from models.amenity import amenity
+        from models.city import city
+        from models.place import place
+        from models.review import review
+        from models.state import state
         dict_reload = {}
         try:
             with open(FileStorage.__file_path) as file:
