@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
             args = shlex.split(args)
             if args[0] not in globals():
                 print("** class doesn't exist **")
-            elif len(args)<2:
+            elif len(args) < 2:
                 print("** instance id missing **")
             else:
                 dict_show = storage.all()
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
             args = shlex.split(args)
             if args[0] not in globals():
                 print("** class doesn't exist **")
-            elif len(args)<2:
+            elif len(args) < 2:
                 print("** instance id missing **")
             else:
                 key = args[0]+"."+args[1]
@@ -73,12 +73,12 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """Prints all string representation of all instances
         based or not on the class name."""
-        list_all=[]
+        list_all = []
         if args:
             args = shlex.split(args)
             if args[0] in globals():
                 for key, value in storage.all().items():
-                    if value.__class__.__name__== args[0]:
+                    if value.__class__.__name__ == args[0]:
                         list_all.append(value.__str__())
                 print(list_all)
             else:
@@ -95,16 +95,16 @@ class HBNBCommand(cmd.Cmd):
             args = shlex.split(args)
             if args[0] not in globals():
                 print("** class doesn't exist **")
-            elif len(args)<2:
+            elif len(args) < 2:
                 print("** instance id missing **")
             elif args[0]+'.'+args[1] not in storage.all():
                 print("** no instance found **")
-            elif len(args)<3:
+            elif len(args) < 3:
                 print("** attribute name missing **")
-            elif len(args)<4:
+            elif len(args) < 4:
                 print("** value missing **")
             else:
-                key=args[0]+'.'+args[1]
+                key = args[0] + '.' + args[1]
                 obj = storage.all()[key]
                 obj.__dict__[args[2]] = args[3]
                 obj.save()
@@ -129,4 +129,4 @@ class HBNBCommand(cmd.Cmd):
 """inicio del programa"""
 if __name__ == '__main__':
     interprete = HBNBCommand()
-    interprete.cmdloop() # modo interactivo
+    interprete.cmdloop()
