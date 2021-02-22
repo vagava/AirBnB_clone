@@ -13,17 +13,6 @@ Before starting, please read the __AirBnB__ concept page.
 _click on the following image for a general description of the project:_
 <a href="https://www.youtube.com/watch?v=E12Xc3H2xqo&feature=emb_logo"><img src="https://i.postimg.cc/Jny7fBMK/hbnb.png"></a>
 
-#### First step: Write a command interpreter to manage your AirBnB objects.
-This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
-
-Each task is linked and will help you to:
-
-- put in place a parent class (called <code>BaseModel</code>) to take care of the initialization, serialization and deserialization of your future instances.
-- create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
-- create all classes used for AirBnB (<code>User</code>, <code>State</code>, <code>City</code>, <code>Place</code>…) that inherit from <code>BaseModel</code>.
-- create the first abstracted storage engine of the project: File storage.
-- create all unittests to validate all our classes and storage engine
-
 ### What’s a command interpreter?
 Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
 
@@ -44,8 +33,6 @@ Read or watch:
 - <a href="https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/">args/kwargs</a>
 - <a href="https://www.pythonsheets.com/notes/python-tests.html">Python test cheatsheet</a>
 
-## Learning Objectives
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
 ### General
 - How to create a Python package
@@ -59,34 +46,92 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 - What is <code>**kwargs</code> and how to use it
 - How to handle named arguments in a function
 
-## Requirements
-### Python Scripts
-- Allowed editors: vi, vim, emacs
-- All your files will be interpreted/compiled on Ubuntu 14.04 LTS using python3 (version 3.4.3)
-- All your files should end with a new line
-- The first line of all your files should be exactly #!/usr/bin/python3
-- A README.md file, at the root of the folder of the project, is mandatory
-- Your code should use the PEP 8 style (version 1.7 or more)
-- All your files must be executable
-- The length of your files will be tested using wc
-- All your modules should have a documentation (python3 -c 'print(\_\_import__("my_module").\_\_doc__)')
-- All your classes should have a documentation (python3 -c 'print(\_\_import__("my_module").MyClass.\_\_doc__)')
-- All your functions (inside and outside a class) should have a documentation (python3 -c 'print(\_\_import__("my_module").my_function.\_\_doc__)' and python3 -c 'print(\_\_import__("my_module").MyClass.my_function.\_\_doc__)')
-- A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
-### Python Unit Tests
-- Allowed editors: vi, vim, emacs
-- All your files should end with a new line
-- All your test files should be inside a folder tests
-- You have to use the unittest module
-- All your test files should be python files (extension: .py)
-- All your test files and folders should start by test_
-- Your file organization in the tests folder should be the same as your project
-- e.g., For models/base_model.py, unit tests must be in: tests/test_models/test_base_model.py
-- e.g., For models/user.py, unit tests must be in: tests/test_models/test_user.py
-- All your tests should be executed by using this command: python3 -m unittest discover tests
-- You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base_model.py
-- All your modules should have a documentation (python3 -c 'print(\_\_import__("my_module").\_\_doc__)')
-- All your classes should have a documentation (python3 -c 'print(\_\_import__("my_module").MyClass.\_\_doc__)')
-- All your functions (inside and outside a class) should have a documentation (python3 -c 'print(\_\_import__("my_module").my_function.\_\_doc__)' and python3 -c 'print(\_\_import__("my_module").MyClass.my_function.\_\_doc__)')
-- We strongly encourage you to work together on test cases, so that you don’t miss any edge case
+### flowchart
+<img src="https://i.ibb.co/GpDQn3P/Hbnb-clone.jpg"></a>
+<img src="https://i.ibb.co/86GzbvP/Hbnb-clone-1.jpg"></a>
+
+### How to install
+
+- In your linux terminal use the command `git clone https://github.com/jdanielue/AirBnB_clone`
+
+
+### How to use it
+
+- You should excecute the command :
+```
+./console.py
+```
+
+- once you have done that you will get into the interactive mode.
+- press help to get an orientation about the commands:
+```
+jdanielue AirBnB_clone->./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb)
+```
+
+### classes allowed
+---
+- BaseModel
+- User
+- State
+- City
+- Amenity
+- Place
+- Review
+
+---
+
+### Commands
+
+#### Create:
+- Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id.
+```
+(hbnb) create BaseModel
+86bf74e2-831b-4c46-950f-5da0aff84a69
+```
+#### show:
+- Prints the string representation of an instance based on the class name and id
+```
+(hbnb) show BaseModel 86bf74e2-831b-4c46-950f-5da0aff84a69
+[BaseModel] (86bf74e2-831b-4c46-950f-5da0aff84a69) {'id': '86bf74e2-831b-4c46-950f-5da0aff84a69', 'created_at': datetime.datetime(2021, 2, 22, 14, 40, 32, 722037), 'updated_at': datetime.datetime(2021, 2, 22, 14, 40, 32, 722061)}
+(hbnb)
+```
+
+#### update:
+- Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+```
+(hbnb) update BaseModel 86bf74e2-831b-4c46-950f-5da0aff84a69 email 2380@holbertonschool.com
+(hbnb)
+
+(hbnb) show BaseModel
+** instance id missing **
+(hbnb) show BaseModel 86bf74e2-831b-4c46-950f-5da0aff84a69
+[BaseModel] (86bf74e2-831b-4c46-950f-5da0aff84a69) {'id': '86bf74e2-831b-4c46-950f-5da0aff84a69', 'created_at': datetime.datetime(2021, 2, 22, 14, 40, 32, 722037), 'updated_at': datetime.datetime(2021, 2, 22, 14, 44, 37, 142678), 'email': '2380@holbertonschool.com'}
+```
+
+#### all:
+-  Prints all string representation of all instances based or not on the class name
+```
+(hbnb) all BaseModel
+["[BaseModel] (94203acf-0913-4467-a378-6b3411f3de67) {'id': '94203acf-0913-4467-a378-6b3411f3de67', 'created_at': datetime.datetime(2021, 2, 17, 22, 43, 13, 586088), 'updated_at': datetime.datetime(2021, 2, 17, 22, 43, 13, 586101), 'name': 'Holberton', 'my_number': 89}", "[BaseModel] (86bf74e2-831b-4c46-950f-5da0aff84a69) {'id': '86bf74e2-831b-4c46-950f-5da0aff84a69', 'created_at': datetime.datetime(2021, 2, 22, 14, 40, 32, 722037), 'updated_at': datetime.datetime(2021, 2, 22, 14, 44, 37, 142678), 'email': '2380@holbertonschool.com'}"]
+(hbnb)
+```
+
+#### destroy:
+- Deletes an instance based on the class name and id (save the change into the JSON file).
+```
+(hbnb) destroy BaseModel 86bf74e2-831b-4c46-950f-5da0aff84a69
+```
+
+### Authors
+
+
+Jorge Daniel Urrego - [Github](https://github.com/jdanielue) / [Twitter](https://twitter.com/jdanielue)
+Vanessa Garcia - [Github](https://github.com/vagava) / [Twitter](https://twitter.com/vagava)
