@@ -1,5 +1,4 @@
-# 0x00. AirBnB clone - The console
-<h1> DE MENTIRITAS ESTE TITULO! </h1>
+# 0x00. AirBnB clone - The consoleS
 
 _For this project, students are expected to look at these concepts:_
 
