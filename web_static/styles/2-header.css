@@ -1,9 +1,11 @@
 header {background-color: white;
+    background-image:url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-x: 20px;
+    background-position-y: center;
     width: 100%;
     height: 70px;
     border-bottom: 1px solid;
     border-bottom-color: #CCCCCC;
-}
-img{vertical-align: middle;
-    margin-left: 20px;
 }
